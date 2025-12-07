@@ -17,7 +17,7 @@ interface Article {
   created_at: string;
 }
 
-const products: Article[] = [
+const articles: Article[] = [
   {
     id: 1,
     title: "Laptop",
@@ -44,31 +44,26 @@ const products: Article[] = [
   },
 ];
 
-app.get("/", (req, res) => {
-  // This handles GET requests to the root (../) endpoint
-  res.json({ message: "Hello World!" });
-});
-
 app.get("/articles", (req, res) => {
-  // This handles GET requests to the /products endpoint
-  res.json(products);
+  // This handles GET requests to the /articles endpoint
+  res.json(articles);
 });
 
-app.get("/products/:id", (req, res) => {
+app.get("/articles/:id", (req, res) => {
   // 1. Get the id from the route parameter (as a string) and convert to number
   // We don't use destructuring here because we need to convert the string to a number
   const id = Number(req.params.id);
 
-  // 2. Find the product with that id
-  const product = products.find((p) => p.id === id);
+  // 2. Find the article with that id
+  const article = articles.find((p) => p.id === id);
 
   // 3. If not found, return a 404 error
-  if (!product) {
+  if (!articles) {
     return res.status(404).json({ error: "Article not found" });
   }
 
-  // 4. If found, return the product as JSON
-  res.json(product);
+  // 4. If found, return the articles as JSON
+  res.json(articles);
 });
 
 // This starts the server and listens for incoming requests
