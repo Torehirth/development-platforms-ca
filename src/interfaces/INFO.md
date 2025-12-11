@@ -30,9 +30,13 @@ Represents the body expected on registration requests.
 ## Example structure (you will create the actual `.ts` files later)
 
 interfaces/
+
 ├── user.interface.ts
+
 ├── article.interface.ts
+
 ├── auth.interface.ts
+
 └── index.ts (optional barrel export)
 
 ## Notes
