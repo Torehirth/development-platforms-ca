@@ -23,8 +23,8 @@ The backend supports:
 - **TypeScript** — type safety
 - **MySQL** — relational database
 - **dotenv** — environment variable support
-- **bcrypt** (or similar) — password hashing
-- **jsonwebtoken** (optional) — authentication tokens
+- **bcrypt** — password hashing
+- **jsonwebtoken** — authentication tokens
 
 ---
 
@@ -60,7 +60,7 @@ PORT=3000
 
 ### 4. Start the server
 
-Development mode with hot-reloading:
+Development mode:
 
 ```bash
 npm run dev
@@ -69,6 +69,7 @@ npm run dev
 Production mode:
 
 ```bash
+npm build
 npm start
 ```
 
@@ -81,7 +82,7 @@ npm start
 source sql/schema.sql;
 ```
 
-3. Confirm the database name matches the DB_NAME in your .env.
+3. Confirm the SQL database values matches the values in your .env.
 
 ## Architecture Overview
 
@@ -138,7 +139,7 @@ Typical flow:
 
 ```json
 {
-  "dev": "ts-node-dev --respawn src/server.ts",
+  "dev": "tsx watch src/server.ts",
   "build": "tsc",
   "start": "node dist/server.js"
 }
