@@ -2,10 +2,10 @@ import { Router } from "express";
 import { pool } from "../database/database";
 import { User } from "../interfaces/user.interface";
 
-const router = Router();
+export const usersRouter = Router();
 
 // Using root folder here, but mounts the correct path in app.ts
-router.get("/", async (req, res) => {
+usersRouter.get("/", async (req, res) => {
   try {
     const [rows] = await pool.execute("SELECT * FROM users");
     const users = rows as User[]; // TypeScript type assertion (used type for clarity)
@@ -18,5 +18,3 @@ router.get("/", async (req, res) => {
     });
   }
 });
-
-export default router;
