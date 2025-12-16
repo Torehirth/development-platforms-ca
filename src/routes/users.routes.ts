@@ -7,7 +7,16 @@ export const usersRouter = Router();
 // Using root folder here, but mounts the correct path in app.ts
 usersRouter.get("/", async (req, res) => {
   try {
-    const [rows] = await pool.execute("SELECT * FROM users");
+    // Pagination
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 10;
+    const offset = (page - 1) * limit;
+
+    const [rows] = await pool.execute("SELECT * FROM users LIMIT ? OFFSET ?", [
+      limit.toString(),
+      offset.toString(),
+    ]);
+
     const users = rows as User[]; // TypeScript type assertion (used type for clarity)
 
     res.json(users);
