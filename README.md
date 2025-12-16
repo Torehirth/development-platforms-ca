@@ -9,7 +9,7 @@ The backend supports:
 
 - User registration and login
 - Password hashing
-- Authentication using tokens (JWT recommended)
+- Authentication using JWT tokens
 - Managing articles/posts
 - SQL-based data storage
 - Organized endpoints and logic separation
@@ -49,9 +49,9 @@ Create a `.env` file in the root directory and add the following variables:
 
 ```env
 DB_HOST=localhost || your_database_host
-DB_USER=root || your_database_user
+DB_USER=DVP || your_database_user
 DB_PASSWORD=your_database_password
-DB_NAME=your_database_name
+DB_NAME=development_platform_db || your_database_name
 DB_PORT=3306 || your_database_port
 
 JWT_SECRET=your_secret_jwt_key
