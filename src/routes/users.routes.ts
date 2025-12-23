@@ -120,18 +120,18 @@ usersRouter.post("/login", async (req, res) => {
       });
     }
 
-    const token = jwt.sign(
+    const accessToken = jwt.sign(
       {
         user_id: user.id,
         email: user.email,
       },
-      jwtSecret,
+      jwtSecret
     );
 
     // Send response
     return res.status(200).json({
       message: "Login successful",
-      token,
+      accessToken,
     });
   } catch (error) {
     console.error("Login error:", error);
