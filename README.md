@@ -2,17 +2,18 @@
 
 Express.js • TypeScript • MySQL
 
-This backend application is built with **Express.js**, **TypeScript**, and **MySQL**.  
-It is designed as a clean, beginner-friendly structure that follows good conventions for separation of concerns, making it easy to understand, maintain, and extend.
+This project is about creating a backend REST API, built with Express.js, TypeScript, and MySQL as part of the Development Platforms CA.
+
+The application focuses on core backend concepts such as authentication, protected routes, database relations, and clean project structure.
 
 The backend supports:
 
 - User registration and login
-- Password hashing
-- Authentication using JWT tokens
-- Managing articles/posts
-- SQL-based data storage
-- Organized endpoints and logic separation
+- Password hashing with bcrypt
+- Authentication using JWT
+- Creating and retrieving articles/posts
+- SQL-based relational data storage
+- Organized routes and middleware
 
 ---
 
@@ -22,9 +23,9 @@ The backend supports:
 - **Express.js** — server framework
 - **TypeScript** — type safety
 - **MySQL** — relational database
-- **dotenv** — environment variable support
+- **dotenv** — environment variable handling
 - **bcrypt** — password hashing
-- **jsonwebtoken** — authentication tokens
+- **jsonwebtoken** — JWT authentication
 
 ---
 
@@ -33,8 +34,7 @@ The backend supports:
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repo-url>
-cd <your-project-folder>
+git clone https://github.com/Torehirth/development-platforms-ca
 ```
 
 ### 2. Install dependencies
@@ -54,11 +54,33 @@ DB_PASSWORD=your_database_password
 DB_NAME=development_platform_db || your_database_name
 DB_PORT=3306 || your_database_port
 
-JWT_SECRET=your_secret_jwt_key
+JWT_SECRET=secret_jwt_key
 PORT=3000
 ```
 
-### 4. Start the server
+### 4. Database setup
+
+4. Database setup
+
+    1. Ensure MySQL is running.
+
+    2. Create the database.
+
+    3. Import the provided SQL schema:
+
+```sql 
+source sql/schema.sql;
+```
+
+This schema includes:
+
+* users table
+
+* articles table
+
+* Foreign key relationship between articles and users
+
+### 5. Start the server
 
 Development mode:
 
@@ -71,15 +93,6 @@ Production mode:
 ```bash
 npm build
 npm start
-```
-
-## Database Setup
-
-1. Ensure MySQL is running.
-2. Create the database and tables by sourcing your schema:
-
-```sql
-source sql/schema.sql;
 ```
 
 3. Confirm the SQL database values matches the values in your .env.
