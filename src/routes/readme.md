@@ -1,8 +1,8 @@
 # Routes Folder
 
-This folder defines the API endpoints that the frontend will call.
+This folder defines the API endpoints that the frontend (or other clients) can call.
 
-Example:
+Examples:
 
 - `GET /users`
 - `POST /articles`
@@ -10,26 +10,26 @@ Example:
 
 ## What goes here?
 
-Each file groups routes by topic:
+Each file groups routes by feature or topic:
 
-- `auth.routes.ts` — login, register.
-- `users.routes.ts` — get user profile, etc.
-- `articles.routes.ts` — fetch or create articles.
+- `auth.routes.ts` — login and registration
+- `users.routes.ts` — user-related endpoints
+- `articles.routes.ts` — fetching and creating articles
 
 ## How does it work?
 
-Each route file:
+Each route file typically:
 
-1. Imports `express.Router()`.
-2. Defines paths (like `/login`).
-3. Calls controller functions.
-4. Optional: applies middleware.
+1. Imports `express.Router()`
+2. Defines URL paths (like `/login`)
+3. Connects those paths to handlers or controllers
+4. Optionally applies middleware (for example, authentication)
 
 ## Notes for beginners
 
-Routes should not contain logic.  
-They should only "connect" URLs to controllers.
+Routes should stay simple.  
+They should not contain business logic.
 
 Think of routes as a map:
 
-- "When someone visits `/login`, run this function."
+- “When someone visits `/login`, run this function.”

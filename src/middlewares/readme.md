@@ -1,24 +1,24 @@
 # Middlewares Folder
 
-Middlewares are functions that run **before** your route handler.
+Middlewares are functions that run **before** your route handlers.
 
 ## What are they used for?
 
-- Checking if a user is logged in.
-- Validating input (e.g., making sure "email" is included).
-- Handling errors in a clean and consistent way.
-- Protecting routes (only logged-in users allowed).
+- Checking if a user is logged in
+- Validating input (for example, making sure an email is included)
+- Handling errors in a clean and consistent way
+- Protecting routes so only logged-in users can access them
 
 ## Example middlewares
 
-- `auth.middleware.ts` — checks if the request has a valid token.
-- `validation.middleware.ts` — makes sure required fields exist.
-- `error.middleware.ts` — handles errors from anywhere in the app.
-- `notFound.middleware.ts` — handles unknown routes.
+- `auth.middleware.ts` — checks if the request has a valid JWT
+- `validation.middleware.ts` — makes sure required fields exist
+- `error.middleware.ts` — handles errors from anywhere in the app
+- `notFound.middleware.ts` — handles unknown routes
 
 ## Notes for beginners
 
-Middlewares make your routes cleaner.  
-Instead of writing the same checks everywhere, you reuse the middleware.
+Middlewares help keep routes clean.  
+Instead of repeating the same checks in every route, the logic is reused.
 
-They run in the order you place them in your route file.
+They run in the order they are added in the route or app setup.
