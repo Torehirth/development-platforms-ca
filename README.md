@@ -2,7 +2,7 @@
 
 Express.js • TypeScript • MySQL
 
-This project is about creating a backend REST API, built with Express.js, TypeScript, and MySQL as part of the Development Platforms CA.
+This project involves creating a backend REST API using Express.js, TypeScript, and MySQL as part of Noroff’s Development Platforms course assignment.
 
 The application focuses on core backend concepts such as authentication, protected routes, database relations, and clean project structure.
 
@@ -62,23 +62,23 @@ PORT=3000
 
 4. Database setup
 
-    1. Ensure MySQL is running.
+   1. Ensure MySQL is running.
 
-    2. Create the database.
+   2. Create the database.
 
-    3. Import the provided SQL schema:
+   3. Import the provided SQL schema:
 
-```sql 
+```sql
 source sql/schema.sql;
 ```
 
 This schema includes:
 
-* users table
+- users table
 
-* articles table
+- articles table
 
-* Foreign key relationship between articles and users
+- Foreign key relationship between articles and users
 
 ### 5. Start the server
 
@@ -91,47 +91,28 @@ npm run dev
 Production mode:
 
 ```bash
-npm build
+npm run build
 npm start
 ```
 
-3. Confirm the SQL database values matches the values in your .env.
-
-## Architecture Overview
-
-Request flow:
-
-- Express route receives the request
-- Route calls a controller
-- Controller delegates to a service
-- Service interacts with MySQL (via a repository or query layer)
-- Response returns: service → controller → route → client
-
-Why this structure:
-
-- Smaller, focused files
-- Clear separation of concerns
-- Easier to test and maintain
-
 ## Authentication
+
+The API uses JWT-based authentication.
 
 Features:
 
-- Password hashing (bcrypt)
-- Login with email/username + password
-- JWT-based auth
-- Protected routes via middleware
-
-Endpoints:
-
-- POST /auth/register
-- POST /auth/login
-
-Send the JWT in the Authorization header:
+- Passwords are hashed with bcrypt
+- Users log in using email and password
+- JWT tokens are issued on login
+- Protected routes use authentication middleware
 
 ```
-Authorization: Bearer <token>
+Authorization: Bearer <accessToken>
 ```
+
+Protected endpoints:
+
+- POST /articles - Creates an article/post
 
 ## Testing the API
 
@@ -144,9 +125,18 @@ Tools:
 Typical flow:
 
 1. Register a user
-2. Log in to receive a token
-3. Call protected endpoints with the token
-4. Create and manage articles
+2. Log in to receive a JWT (accessToken)
+3. Call protected endpoints with the token in the header
+4. Create and fetch articles
+
+## Project Structure
+
+- Routes are organised using Express Router
+- Authentication logic is handled in middleware
+- Database access is handled via MySQL queries
+- TypeScript interfaces are used for request and JWT payloads
+
+This structure was chosen to keep responsibilities clear and make the project easier to understand and extend.
 
 ## NPM Scripts
 
@@ -158,23 +148,10 @@ Typical flow:
 }
 ```
 
-## Notes
+### Motivation section
 
-- TypeScript: run build before production.
-- .env must be correctly configured for MySQL connection.
-- Each module (routes, controllers, services, middlewares) includes its own README for guidance.
-- The structure is designed for learning clean backend practices.
+I chose Option 1 because I wanted to learn more about backend development. Most of my experience so far is frontend, so this project felt like a good way to understand how APIs, authentication, and databases work behind the scenes.
 
-## Troubleshooting
+Another reason is the job market. There seems to be a growing demand for developers who understand both frontend and backend, and having some backend knowledge increases job possibilities, even if I mainly work with frontend.
 
-- Is MySQL running?
-- Are .env values correct?
-- Did you run npm install?
-- Did you build before starting in production?
-- Any typos in SQL table/column names?
-
-## Final Notes
-
-- Beginner-friendly and extensible
-- Clean, organized architecture
-- Good starting point for full-stack apps
+I also like the technologies used in this project. Express.js, TypeScript, and MySQL are all popular and relevant, and this assignment gave me a good starting point. I want to dig deeper into these technologies over time and get more comfortable working across the full stack.
