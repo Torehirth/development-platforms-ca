@@ -1,10 +1,14 @@
 import express from "express";
-import usersRouter from "./routes/users.routes"; // router is a default export = renamed to usersRouter
+import { usersRouter } from "./routes/users.routes";
+import { userIdRouter } from "./routes/user.routes";
+import { articlesRouter } from "./routes/articles.routes";
+import { articleIdRouter } from "./routes/article.routes";
 
-const app = express();
+export const app = express();
 
 app.use(express.json());
 
 app.use("/users", usersRouter);
-
-export default app;
+app.use("/users", userIdRouter);
+app.use("/articles", articlesRouter);
+app.use("/articles", articleIdRouter);

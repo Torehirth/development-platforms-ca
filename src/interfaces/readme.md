@@ -1,26 +1,27 @@
 # Interfaces Folder
 
-This folder contains TypeScript interfaces that describe what your data looks like.
+This folder contains TypeScript interfaces that describe the shape of the data used in the application.
 
 ## Why is this important?
 
 Interfaces help TypeScript understand:
 
-- what a user object contains,
-- what an article object contains,
-- what a request body should look like.
+- what a user object contains
+- what an article object contains
+- what a request body is expected to look like
 
-This prevents bugs and makes the code easier to write.
+This helps prevent bugs and makes the code easier to read and write.
 
-## Examples of interfaces you might have
+## Examples of interfaces
 
-- `IUser` — matches your users table.
-- `IArticle` — matches your articles table.
-- `ILoginRequest` — describes the expected login body.
-- `IRegisterRequest` — describes the expected registration body.
+- `IUser` — matches the users table
+- `IArticle` — matches the articles table
+- `ILoginRequest` — describes the login request body
+- `IRegisterRequest` — describes the registration request body
 
 ## Notes for beginners
 
-Interfaces never create real code in JavaScript — they only help TypeScript check your work.
+Interfaces do not exist in the final JavaScript output.  
+They are only used by TypeScript during development.
 
-They are especially helpful for SQL projects because your table structure becomes easier to understand.
+For SQL-based projects, interfaces make it easier to keep the code and database structure in sync.

@@ -2,17 +2,18 @@
 
 Express.js • TypeScript • MySQL
 
-This backend application is built with **Express.js**, **TypeScript**, and **MySQL**.  
-It is designed as a clean, beginner-friendly structure that follows good conventions for separation of concerns, making it easy to understand, maintain, and extend.
+This project involves creating a backend REST API using Express.js, TypeScript, and MySQL as part of Noroff’s Development Platforms course assignment.
+
+The application focuses on core backend concepts such as authentication, protected routes, database relations, and clean project structure.
 
 The backend supports:
 
 - User registration and login
-- Password hashing
-- Authentication using tokens (JWT recommended)
-- Managing articles/posts
-- SQL-based data storage
-- Organized endpoints and logic separation
+- Password hashing with bcrypt
+- Authentication using JWT
+- Creating and retrieving articles/posts
+- SQL-based relational data storage
+- Organized routes and middleware
 
 ---
 
@@ -22,9 +23,9 @@ The backend supports:
 - **Express.js** — server framework
 - **TypeScript** — type safety
 - **MySQL** — relational database
-- **dotenv** — environment variable support
+- **dotenv** — environment variable handling
 - **bcrypt** — password hashing
-- **jsonwebtoken** — authentication tokens
+- **jsonwebtoken** — JWT authentication
 
 ---
 
@@ -33,8 +34,7 @@ The backend supports:
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repo-url>
-cd <your-project-folder>
+git clone https://github.com/Torehirth/development-platforms-ca
 ```
 
 ### 2. Install dependencies
@@ -49,16 +49,38 @@ Create a `.env` file in the root directory and add the following variables:
 
 ```env
 DB_HOST=localhost || your_database_host
-DB_USER=root || your_database_user
+DB_USER=DVP || your_database_user
 DB_PASSWORD=your_database_password
-DB_NAME=your_database_name
+DB_NAME=development_platform_db || your_database_name
 DB_PORT=3306 || your_database_port
 
-JWT_SECRET=your_secret_jwt_key
+JWT_SECRET=secret_jwt_key
 PORT=3000
 ```
 
-### 4. Start the server
+### 4. Database setup
+
+4. Database setup
+
+   1. Ensure MySQL is running.
+
+   2. Create the database.
+
+   3. Import the provided SQL schema:
+
+```sql
+source sql/schema.sql;
+```
+
+This schema includes:
+
+- users table
+
+- articles table
+
+- Foreign key relationship between articles and users
+
+### 5. Start the server
 
 Development mode:
 
@@ -69,56 +91,28 @@ npm run dev
 Production mode:
 
 ```bash
-npm build
+npm run build
 npm start
 ```
 
-## Database Setup
-
-1. Ensure MySQL is running.
-2. Create the database and tables by sourcing your schema:
-
-```sql
-source sql/schema.sql;
-```
-
-3. Confirm the SQL database values matches the values in your .env.
-
-## Architecture Overview
-
-Request flow:
-
-- Express route receives the request
-- Route calls a controller
-- Controller delegates to a service
-- Service interacts with MySQL (via a repository or query layer)
-- Response returns: service → controller → route → client
-
-Why this structure:
-
-- Smaller, focused files
-- Clear separation of concerns
-- Easier to test and maintain
-
 ## Authentication
+
+The API uses JWT-based authentication.
 
 Features:
 
-- Password hashing (bcrypt)
-- Login with email/username + password
-- JWT-based auth
-- Protected routes via middleware
-
-Endpoints:
-
-- POST /auth/register
-- POST /auth/login
-
-Send the JWT in the Authorization header:
+- Passwords are hashed with bcrypt
+- Users log in using email and password
+- JWT tokens are issued on login
+- Protected routes use authentication middleware
 
 ```
-Authorization: Bearer <token>
+Authorization: Bearer <accessToken>
 ```
+
+Protected endpoints:
+
+- POST /articles - Creates an article/post
 
 ## Testing the API
 
@@ -131,9 +125,18 @@ Tools:
 Typical flow:
 
 1. Register a user
-2. Log in to receive a token
-3. Call protected endpoints with the token
-4. Create and manage articles
+2. Log in to receive a JWT (accessToken)
+3. Call protected endpoints with the token in the header
+4. Create and fetch articles
+
+## Project Structure
+
+- Routes are organised using Express Router
+- Authentication logic is handled in middleware
+- Database access is handled via MySQL queries
+- TypeScript interfaces are used for request and JWT payloads
+
+This structure was chosen to keep responsibilities clear and make the project easier to understand and extend.
 
 ## NPM Scripts
 
@@ -145,23 +148,10 @@ Typical flow:
 }
 ```
 
-## Notes
+### Motivation section
 
-- TypeScript: run build before production.
-- .env must be correctly configured for MySQL connection.
-- Each module (routes, controllers, services, middlewares) includes its own README for guidance.
-- The structure is designed for learning clean backend practices.
+I chose Option 1 because I wanted to learn more about backend development. Most of my experience so far is frontend, so this project felt like a good way to understand how APIs, authentication, and databases work behind the scenes.
 
-## Troubleshooting
+Another reason is the job market. There seems to be a growing demand for developers who understand both frontend and backend, and having some backend knowledge increases job possibilities, even if I mainly work with frontend.
 
-- Is MySQL running?
-- Are .env values correct?
-- Did you run npm install?
-- Did you build before starting in production?
-- Any typos in SQL table/column names?
-
-## Final Notes
-
-- Beginner-friendly and extensible
-- Clean, organized architecture
-- Good starting point for full-stack apps
+I also like the technologies used in this project. Express.js, TypeScript, and MySQL are all popular and relevant, and this assignment gave me a good starting point. I want to dig deeper into these technologies over time and get more comfortable working across the full stack.

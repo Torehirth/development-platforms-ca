@@ -1,24 +1,24 @@
 # Database Folder
 
-This folder contains everything that deals with your MySQL database.
+This folder contains everything related to the MySQL database.
 
 ## What goes here?
 
-- The file that creates and exports the MySQL connection or connection pool.
-- Optional helpers for running queries.
-- SQL migration files if you add them later.
+- The file that creates and exports the MySQL connection or connection pool
+- Optional helpers for running SQL queries
+- SQL migration or schema files, if added later
 
-## Why separate this folder?
+## Why is this folder separated?
 
-By keeping all database logic in one place, your controllers and services stay clean.  
-Other parts of your app can simply import the database connection instead of setting it up themselves.
+Keeping all database logic in one place helps keep the rest of the application clean.  
+Routes and other logic can import the database connection instead of setting it up themselves.
 
 ## Example files
 
-- `connection.ts` — creates the MySQL connection.
-- `queryHelper.ts` — optional helper that makes SQL queries easier.
+- `database.ts` — creates and exports the MySQL connection
+- `queryHelper.ts` — optional helper for handling SQL queries
 
 ## Notes for beginners
 
-- The backend connects **once** to the database using the configuration in this folder.
-- Every function that needs data (users, articles, etc.) uses this shared connection.
+- The backend connects to the database once using the configuration in this folder
+- Features like users and articles all use the same shared connection
